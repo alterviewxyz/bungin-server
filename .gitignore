@@ -62,3 +62,6 @@ typings/
 
 .env
 variables.env
+
+# editor stuff 
+.vscode
