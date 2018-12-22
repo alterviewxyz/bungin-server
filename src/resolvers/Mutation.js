@@ -59,34 +59,45 @@ const Mutations = {
   },
 
   async addPodcastFromURL(parent, args, ctx, info) {
-      console.log("addPodcastFromURL Triggered.",args.rss)
-      feedparser(args.rss,(feed) => {
-        console.log("this",feed);
-      });
       // 1. verify if user is Logged In
-      // if(!ctx.request.userId){
-      //   throw new Error("You must be logged to do that!");
-      // }
+      if(!ctx.request.userId){
+        throw new Error("You must be logged to do that!");
+      }
 
       // 2. verify if user has "PODCASTADD" permission
       // TODO
 
-      // 3. add podcast
-      // const podcastStation = await db.mutation.createPodcastStation(
-      //   {
-      //     data: {
-      //         // 4. create a relationship between the PodcastStation and the User
-      //         // user: {
-      //         //     connect: {
-      //         //         id: ctx.request.userId,
-      //         //     },
-      //         // },
-      //       ...args,
-      //     },
-      //   },
-      //   info
-      // );
-      // return podcastStation;
+      // 3. parse podcast feed
+      feedparser(args.rss, async (feed) => {
+        console.log("this",feed);
+
+        // 4. add podcast
+        const podcastStation = await db.mutation.createPodcastStation(
+          {
+            data: {
+                // 4. create a relationship between the PodcastStation and the User
+                author: {
+                    connect: {
+                        id: ctx.request.userId,
+                    },
+                },
+                rss: args.rss,
+                pending: true,
+                title: feed.Meta.title,
+                description: feed.Meta.description,
+                language:feed.Meta.language,
+                episodesId:[],
+                image: feed.Meta.image.url,
+                website:feed.Meta.website,
+                unProcessedFeed:feed
+            },
+          },
+          info
+        );
+
+        return podcastStation;
+
+      });
   },
 };
 
