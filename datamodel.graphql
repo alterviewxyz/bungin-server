@@ -20,6 +20,7 @@ type User {
 type PodcastStation {
   id: ID! @unique
   rss: String!
+  pending:Boolean! @default(value: true)
   title: String!
   description: String!
   language:String! @default(value: "fa")
