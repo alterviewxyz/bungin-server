@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Sat Dec 22 2018 09:41:49 GMT+0330 (Iran Standard Time)
+# timestamp: Sat Dec 22 2018 19:12:41 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -700,6 +700,9 @@ input CopyrightWhereInput {
 input CopyrightWhereUniqueInput {
   id: ID
 }
+
+"""Raw JSON value"""
+scalar Json
 
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
@@ -1598,6 +1601,7 @@ type PodcastStation implements Node {
   id: ID!
   rss: String!
   pending: Boolean!
+  unProcessedFeed: Json
   title: String!
   description: String!
   language: String!
@@ -1627,6 +1631,7 @@ type PodcastStationConnection {
 input PodcastStationCreateInput {
   rss: String!
   pending: Boolean
+  unProcessedFeed: Json
   title: String!
   description: String!
   language: String
@@ -1659,6 +1664,7 @@ input PodcastStationCreatetagInput {
 input PodcastStationCreateWithoutEpisodesIdInput {
   rss: String!
   pending: Boolean
+  unProcessedFeed: Json
   title: String!
   description: String!
   language: String
@@ -1690,6 +1696,8 @@ enum PodcastStationOrderByInput {
   rss_DESC
   pending_ASC
   pending_DESC
+  unProcessedFeed_ASC
+  unProcessedFeed_DESC
   title_ASC
   title_DESC
   description_ASC
@@ -1716,6 +1724,7 @@ type PodcastStationPreviousValues {
   id: ID!
   rss: String!
   pending: Boolean!
+  unProcessedFeed: Json
   title: String!
   description: String!
   language: String!
@@ -1770,6 +1779,7 @@ input PodcastStationSubscriptionWhereInput {
 input PodcastStationUpdateInput {
   rss: String
   pending: Boolean
+  unProcessedFeed: Json
   title: String
   description: String
   language: String
@@ -1789,6 +1799,7 @@ input PodcastStationUpdateInput {
 input PodcastStationUpdateManyMutationInput {
   rss: String
   pending: Boolean
+  unProcessedFeed: Json
   title: String
   description: String
   language: String
@@ -1819,6 +1830,7 @@ input PodcastStationUpdatetagInput {
 input PodcastStationUpdateWithoutEpisodesIdDataInput {
   rss: String
   pending: Boolean
+  unProcessedFeed: Json
   title: String
   description: String
   language: String

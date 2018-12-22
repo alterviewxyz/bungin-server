@@ -21,6 +21,7 @@ type PodcastStation {
   id: ID! @unique
   rss: String!
   pending:Boolean! @default(value: true)
+  unProcessedFeed:Json
   title: String!
   description: String!
   language:String! @default(value: "fa")
