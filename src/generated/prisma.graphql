@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Tue Dec 18 2018 17:13:42 GMT+0330 (+0330)
+# timestamp: Sat Dec 22 2018 09:41:49 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -1597,6 +1597,7 @@ input PodcastEpisodeWhereUniqueInput {
 type PodcastStation implements Node {
   id: ID!
   rss: String!
+  pending: Boolean!
   title: String!
   description: String!
   language: String!
@@ -1625,6 +1626,7 @@ type PodcastStationConnection {
 
 input PodcastStationCreateInput {
   rss: String!
+  pending: Boolean
   title: String!
   description: String!
   language: String
@@ -1656,6 +1658,7 @@ input PodcastStationCreatetagInput {
 
 input PodcastStationCreateWithoutEpisodesIdInput {
   rss: String!
+  pending: Boolean
   title: String!
   description: String!
   language: String
@@ -1685,6 +1688,8 @@ enum PodcastStationOrderByInput {
   id_DESC
   rss_ASC
   rss_DESC
+  pending_ASC
+  pending_DESC
   title_ASC
   title_DESC
   description_ASC
@@ -1710,6 +1715,7 @@ enum PodcastStationOrderByInput {
 type PodcastStationPreviousValues {
   id: ID!
   rss: String!
+  pending: Boolean!
   title: String!
   description: String!
   language: String!
@@ -1763,6 +1769,7 @@ input PodcastStationSubscriptionWhereInput {
 
 input PodcastStationUpdateInput {
   rss: String
+  pending: Boolean
   title: String
   description: String
   language: String
@@ -1781,6 +1788,7 @@ input PodcastStationUpdateInput {
 
 input PodcastStationUpdateManyMutationInput {
   rss: String
+  pending: Boolean
   title: String
   description: String
   language: String
@@ -1810,6 +1818,7 @@ input PodcastStationUpdatetagInput {
 
 input PodcastStationUpdateWithoutEpisodesIdDataInput {
   rss: String
+  pending: Boolean
   title: String
   description: String
   language: String
@@ -1919,6 +1928,10 @@ input PodcastStationWhereInput {
 
   """All values not ending with the given string."""
   rss_not_ends_with: String
+  pending: Boolean
+
+  """All values that are not equal to given value."""
+  pending_not: Boolean
   title: String
 
   """All values that are not equal to given value."""
