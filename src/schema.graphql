@@ -19,8 +19,8 @@ type Mutation {
 type Query {
   podcastStations(where: PodcastStationWhereInput, orderBy: PodcastStationOrderByInput, skip: Int, first: Int): [PodcastStation]!
   podcastStation(where: PodcastStationWhereUniqueInput!): PodcastStation
-  # me: User
-  # users: [User]!
+  me: User
+  users: [User]!
 }
 
 type User{
