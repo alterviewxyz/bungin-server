@@ -11,7 +11,7 @@ type Mutation {
   # requestReset(email: String!): SuccessMessage
   # resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
 
-  createPodcastStation(rss: String!,title: String!,description: String!, image: String): PodcastStation!
+  addPodcastFromURL(rss: String!): PodcastStation!
 
   # updatePermissions(permissions: [Permission], userId: ID!): User
 }

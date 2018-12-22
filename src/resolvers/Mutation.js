@@ -29,6 +29,7 @@ const Mutations = {
     // 6. Finally we return the user to the browser
     return user;
   },
+
   async signin(parent, { email, password }, ctx, info) {
     // 1. check if there is a user with that email
     const user = await ctx.db.query.user({ where: { email } });
@@ -50,11 +51,14 @@ const Mutations = {
     // 5. Return the user
     return user;
   },
+
   signout(parent, args, ctx, info) {
     ctx.response.clearCookie('token');
     return { message: 'Goodbye!' };
   },
-  async createPodcastStation(parent, args, ctx, info) {
+
+  async addPodcastFromURL(parent, args, ctx, info) {
+      console.log("addPodcastFromURL Triggered.")
       // 1. verify if user is Logged In
       // if(!ctx.request.userId){
       //   throw new Error("You must be logged to do that!");
@@ -64,21 +68,21 @@ const Mutations = {
       // TODO
 
       // 3. add podcast
-      const podcastStation = await db.mutation.createPodcastStation(
-        {
-          data: {
-              // 4. create a relationship between the PodcastStation and the User
-              // user: {
-              //     connect: {
-              //         id: ctx.request.userId,
-              //     },
-              // },
-            ...args,
-          },
-        },
-        info
-      );
-      return podcastStation;
+      // const podcastStation = await db.mutation.createPodcastStation(
+      //   {
+      //     data: {
+      //         // 4. create a relationship between the PodcastStation and the User
+      //         // user: {
+      //         //     connect: {
+      //         //         id: ctx.request.userId,
+      //         //     },
+      //         // },
+      //       ...args,
+      //     },
+      //   },
+      //   info
+      // );
+      // return podcastStation;
   },
 };
 
