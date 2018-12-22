@@ -50,6 +50,10 @@ const Mutations = {
     // 5. Return the user
     return user;
   },
+  signout(parent, args, ctx, info) {
+    ctx.response.clearCookie('token');
+    return { message: 'Goodbye!' };
+  },
   async createPodcastStation(parent, args, ctx, info) {
       // 1. verify if user is Logged In
       // if(!ctx.request.userId){
