@@ -13,6 +13,7 @@
     "bcryptjs": "2.4.3",
     "cookie-parser": "^1.4.3",
     "dotenv": "6.0.0",
+    "feedparser": "^2.2.9",
     "graphql": "^0.13.2",
     "graphql-cli": "^2.16.7",
     "graphql-yoga": "1.16.2",

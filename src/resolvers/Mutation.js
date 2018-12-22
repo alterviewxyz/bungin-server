@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../db');
+const feedparser = require('../functions/ParseFeed');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {
@@ -58,7 +59,10 @@ const Mutations = {
   },
 
   async addPodcastFromURL(parent, args, ctx, info) {
-      console.log("addPodcastFromURL Triggered.")
+      console.log("addPodcastFromURL Triggered.",args.rss)
+      feedparser(args.rss,(feed) => {
+        console.log("this",feed);
+      });
       // 1. verify if user is Logged In
       // if(!ctx.request.userId){
       //   throw new Error("You must be logged to do that!");
