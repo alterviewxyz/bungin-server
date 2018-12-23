@@ -68,9 +68,17 @@ const Mutations = {
       // TODO
 
       // 3. parse podcast feed
-      feedparser(args.rss, async (feed) => {
-        console.log("this",feed);
+      let theFeed;
+      await feedparser(args.rss)
+        .then(function(feed) {
+          theFeed = feed;
+        })
+        .catch(function(e) {
+          theFeed = null;
+          console.error('There was a problem with the request');
+      })
 
+      if (true){
         // 4. add podcast
         const podcastStation = await db.mutation.createPodcastStation(
           {
@@ -83,21 +91,20 @@ const Mutations = {
                 },
                 rss: args.rss,
                 pending: true,
-                title: feed.Meta.title,
-                description: feed.Meta.description,
-                language:feed.Meta.language,
+                title: theFeed.Meta.title,
+                description: theFeed.Meta.description,
+                language:theFeed.Meta.language,
                 episodesId:[],
-                image: feed.Meta.image.url,
-                website:feed.Meta.website,
-                unProcessedFeed:feed
+                image: theFeed.Meta.image.url,
+                website:theFeed.Meta.website,
+                unProcessedFeed:theFeed
             },
           },
           info
         );
-
+        
         return podcastStation;
-
-      });
+      }
   },
 };
 
