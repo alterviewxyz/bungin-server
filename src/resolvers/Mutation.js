@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../db');
 const feedparser = require('../functions/ParseFeed');
+const Slugify = require('../functions/Slugify');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {
@@ -79,6 +80,9 @@ const Mutations = {
       })
 
       if (true){
+        const theSlug = Slugify(theFeed.Meta.title);
+        console.log(theSlug);
+
         // 4. add podcast
         const podcastStation = await db.mutation.createPodcastStation(
           {
@@ -92,6 +96,7 @@ const Mutations = {
                 rss: args.rss,
                 pending: true,
                 title: theFeed.Meta.title,
+                slug: theSlug,
                 description: theFeed.Meta.description,
                 language:theFeed.Meta.language,
                 episodesId:[],
@@ -102,7 +107,7 @@ const Mutations = {
           },
           info
         );
-        
+        console.log(podcastStation);
         return podcastStation;
       }
   },

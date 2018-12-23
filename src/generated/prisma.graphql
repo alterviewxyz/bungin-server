@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Sat Dec 22 2018 19:12:41 GMT+0330 (Iran Standard Time)
+# timestamp: Mon Dec 24 2018 02:30:38 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -1599,6 +1599,7 @@ input PodcastEpisodeWhereUniqueInput {
 
 type PodcastStation implements Node {
   id: ID!
+  slug: String!
   rss: String!
   pending: Boolean!
   unProcessedFeed: Json
@@ -1629,6 +1630,7 @@ type PodcastStationConnection {
 }
 
 input PodcastStationCreateInput {
+  slug: String!
   rss: String!
   pending: Boolean
   unProcessedFeed: Json
@@ -1662,6 +1664,7 @@ input PodcastStationCreatetagInput {
 }
 
 input PodcastStationCreateWithoutEpisodesIdInput {
+  slug: String!
   rss: String!
   pending: Boolean
   unProcessedFeed: Json
@@ -1692,6 +1695,8 @@ type PodcastStationEdge {
 enum PodcastStationOrderByInput {
   id_ASC
   id_DESC
+  slug_ASC
+  slug_DESC
   rss_ASC
   rss_DESC
   pending_ASC
@@ -1722,6 +1727,7 @@ enum PodcastStationOrderByInput {
 
 type PodcastStationPreviousValues {
   id: ID!
+  slug: String!
   rss: String!
   pending: Boolean!
   unProcessedFeed: Json
@@ -1777,6 +1783,7 @@ input PodcastStationSubscriptionWhereInput {
 }
 
 input PodcastStationUpdateInput {
+  slug: String
   rss: String
   pending: Boolean
   unProcessedFeed: Json
@@ -1797,6 +1804,7 @@ input PodcastStationUpdateInput {
 }
 
 input PodcastStationUpdateManyMutationInput {
+  slug: String
   rss: String
   pending: Boolean
   unProcessedFeed: Json
@@ -1828,6 +1836,7 @@ input PodcastStationUpdatetagInput {
 }
 
 input PodcastStationUpdateWithoutEpisodesIdDataInput {
+  slug: String
   rss: String
   pending: Boolean
   unProcessedFeed: Json
@@ -1900,6 +1909,46 @@ input PodcastStationWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  slug: String
+
+  """All values that are not equal to given value."""
+  slug_not: String
+
+  """All values that are contained in given list."""
+  slug_in: [String!]
+
+  """All values that are not contained in given list."""
+  slug_not_in: [String!]
+
+  """All values less than the given value."""
+  slug_lt: String
+
+  """All values less than or equal the given value."""
+  slug_lte: String
+
+  """All values greater than the given value."""
+  slug_gt: String
+
+  """All values greater than or equal the given value."""
+  slug_gte: String
+
+  """All values containing the given string."""
+  slug_contains: String
+
+  """All values not containing the given string."""
+  slug_not_contains: String
+
+  """All values starting with the given string."""
+  slug_starts_with: String
+
+  """All values not starting with the given string."""
+  slug_not_starts_with: String
+
+  """All values ending with the given string."""
+  slug_ends_with: String
+
+  """All values not ending with the given string."""
+  slug_not_ends_with: String
   rss: String
 
   """All values that are not equal to given value."""
@@ -2238,6 +2287,7 @@ input PodcastStationWhereInput {
 
 input PodcastStationWhereUniqueInput {
   id: ID
+  slug: String
 }
 
 type Query {

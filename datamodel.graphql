@@ -19,6 +19,7 @@ type User {
 
 type PodcastStation {
   id: ID! @unique
+  slug: String! @unique
   rss: String!
   pending:Boolean! @default(value: true)
   unProcessedFeed:Json
