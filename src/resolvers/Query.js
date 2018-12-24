@@ -27,6 +27,8 @@ const Query = {
     },
     podcastStations: forwardTo('db'),
     podcastStation: forwardTo('db'),
+    podcastEpisodes: forwardTo('db'),
+    podcastEpisode: forwardTo('db'),
 };
 
 module.exports = Query;

@@ -31,7 +31,6 @@ const Mutations = {
     // 6. Finally we return the user to the browser
     return user;
   },
-
   async signin(parent, { email, password }, ctx, info) {
     // 1. check if there is a user with that email
     const user = await ctx.db.query.user({ where: { email } });
@@ -53,12 +52,11 @@ const Mutations = {
     // 5. Return the user
     return user;
   },
-
   signout(parent, args, ctx, info) {
     ctx.response.clearCookie('token');
     return { message: 'Goodbye!' };
   },
-
+  
   async addPodcastFromURL(parent, args, ctx, info) {
       // 1. verify if user is Logged In
       if(!ctx.request.userId){
@@ -111,6 +109,98 @@ const Mutations = {
         return podcastStation;
       }
   },
+  updatePodcastStation(parent, args, ctx, info) {
+    // first take a copy of the updates
+    const updates = { ...args };
+    // remove the ID from the updates
+    delete updates.id;
+    // run the update method
+    return ctx.db.mutation.updatePodcastStation(
+      {
+        data: updates.data,
+        where: {
+          id: args.id,
+        },
+      },
+      info
+    );
+  },
+  async deletePodcastStation(parent, args, ctx, info) {
+    const where = { id: args.id };
+    // 1. find the item
+    // const item = await ctx.db.query.podcastStation({ where }, `{ id title user { id }}`);
+
+    // 2. Check if they own that item, or have the permissions
+    // const ownsItem = item.user.id === ctx.request.userId;
+    // const hasPermissions = ctx.request.user.permissions.some(permission =>
+    //   ['ADMIN', 'ITEMDELETE'].includes(permission)
+    // );
+    // if (!ownsItem && !hasPermissions) {
+    //   throw new Error("You don't have permission to do that!");
+    // }
+
+    // 3. Delete it!
+    return ctx.db.mutation.deletePodcastStation({ where }, info);
+  },
+
+  async createPodcastEpisode(parent, args, ctx, info) {
+    // if(!ctx.request.userId){
+    //   throw new Error("You must be logged to do that!");
+    // }
+    console.log(args);
+
+    const item = await ctx.db.mutation.createPodcastEpisode(
+      {
+        data: {
+          // This is how we create a relationship between the PodcastEpisode and the User
+          // user: {
+          //   connect: {
+          //     id: ctx.request.userId,
+          //   },
+          // },
+          ...args.data,
+        },
+      },
+      info
+    );
+
+    console.log(item);
+
+    return item;
+  },
+  updatePodcastEpisode(parent, args, ctx, info) {
+    // first take a copy of the updates
+    const updates = { ...args };
+    // remove the ID from the updates
+    delete updates.id;
+    // run the update method
+    return ctx.db.mutation.updatePodcastEpisode(
+      {
+        data: updates.data,
+        where: {
+          id: args.id,
+        },
+      },
+      info
+    );
+  },
+  async deletePodcastEpisode(parent, args, ctx, info) {
+    const where = { id: args.id };
+    // 1. find the item
+    // const item = await ctx.db.query.item({ where }, `{ id title user { id }}`);
+    // 2. Check if they own that item, or have the permissions
+    // const ownsItem = item.user.id === ctx.request.userId;
+    // const hasPermissions = ctx.request.user.permissions.some(permission =>
+    //   ['ADMIN', 'ITEMDELETE'].includes(permission)
+    // );
+
+    // if (!ownsItem && !hasPermissions) {
+    //   throw new Error("You don't have permission to do that!");
+    // }
+    // 3. Delete it!
+    return ctx.db.mutation.deletePodcastEpisode({ where }, info);
+  },
+
 };
 
 module.exports = Mutations;
