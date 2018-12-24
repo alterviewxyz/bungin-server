@@ -98,7 +98,7 @@ const Mutations = {
                 title: theFeed.Meta.title,
                 slug: theSlug,
                 description: theFeed.Meta.description,
-                language:theFeed.Meta.language,
+                language:theFeed.Meta.language || "fa",
                 episodesId:[],
                 image: theFeed.Meta.image.url,
                 website:theFeed.Meta.website,

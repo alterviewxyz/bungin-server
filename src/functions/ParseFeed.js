@@ -1,5 +1,6 @@
 var FeedParser = require('feedparser');
 var request = require('request');
+var textVersion = require("textversionjs");
 
 var feedparser = new FeedParser([]);
 
@@ -55,7 +56,7 @@ const ParseFeed = (feedURL) => {
                 const parsedItems = Items.map(episode => {
                     return {
                         "author": episode.author,
-                        "content": episode.description,
+                        "content": textVersion(episode.description || episode.summary),
                         "date":episode.date,
                         "permalink": episode.permalink,
                         "duration":episode['itunes:duration'],
@@ -64,7 +65,6 @@ const ParseFeed = (feedURL) => {
                         "season": episode['itunes:season'],
                         "title": episode.title,
                         "episodetype": episode['itunes:episodetype'],
-                        "summary":episode.summary
                     }
                 });
                 const output = {"Meta":parsedMeta,"Episodes":parsedItems};
