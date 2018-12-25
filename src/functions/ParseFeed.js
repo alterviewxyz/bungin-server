@@ -59,12 +59,12 @@ const ParseFeed = (feedURL) => {
                         "content": textVersion(episode.description || episode.summary),
                         "date":episode.date,
                         "permalink": episode.permalink,
-                        "duration":episode['itunes:duration'],
-                        "image":episode['itunes:image'],
-                        "episode": episode['itunes:episode'],
+                        "duration":episode['itunes:duration']['#'],
+                        "image":episode['itunes:image']['@']['href'],
+                        "episode": episode['itunes:episode']['#'],
                         "season": episode['itunes:season'],
                         "title": episode.title,
-                        "episodetype": episode['itunes:episodetype'],
+                        "episodetype": episode['itunes:episodetype']['#'],
                     }
                 });
                 const output = {"Meta":parsedMeta,"Episodes":parsedItems};
