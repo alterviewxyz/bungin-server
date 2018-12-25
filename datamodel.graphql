@@ -41,7 +41,6 @@ type PodcastStation {
 
 type PodcastEpisode {
   id: ID! @unique
-  slug: String! @unique
   mp3: String!
   podcastStation:PodcastStation
   episodeNubmer:Int!

@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Mon Dec 24 2018 21:09:55 GMT+0330 (Iran Standard Time)
+# timestamp: Tue Dec 25 2018 03:40:42 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -780,7 +780,6 @@ enum Permission {
 
 type PodcastEpisode implements Node {
   id: ID!
-  slug: String!
   mp3: String!
   podcastStation: PodcastStation
   episodeNubmer: Int!
@@ -804,7 +803,6 @@ type PodcastEpisodeConnection {
 }
 
 input PodcastEpisodeCreateInput {
-  slug: String!
   mp3: String!
   episodeNubmer: Int!
   title: String!
@@ -832,7 +830,6 @@ input PodcastEpisodeCreatetagInput {
 }
 
 input PodcastEpisodeCreateWithoutPodcastStationInput {
-  slug: String!
   mp3: String!
   episodeNubmer: Int!
   title: String!
@@ -856,8 +853,6 @@ type PodcastEpisodeEdge {
 enum PodcastEpisodeOrderByInput {
   id_ASC
   id_DESC
-  slug_ASC
-  slug_DESC
   mp3_ASC
   mp3_DESC
   episodeNubmer_ASC
@@ -880,7 +875,6 @@ enum PodcastEpisodeOrderByInput {
 
 type PodcastEpisodePreviousValues {
   id: ID!
-  slug: String!
   mp3: String!
   episodeNubmer: Int!
   title: String!
@@ -940,46 +934,6 @@ input PodcastEpisodeScalarWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  slug: String
-
-  """All values that are not equal to given value."""
-  slug_not: String
-
-  """All values that are contained in given list."""
-  slug_in: [String!]
-
-  """All values that are not contained in given list."""
-  slug_not_in: [String!]
-
-  """All values less than the given value."""
-  slug_lt: String
-
-  """All values less than or equal the given value."""
-  slug_lte: String
-
-  """All values greater than the given value."""
-  slug_gt: String
-
-  """All values greater than or equal the given value."""
-  slug_gte: String
-
-  """All values containing the given string."""
-  slug_contains: String
-
-  """All values not containing the given string."""
-  slug_not_contains: String
-
-  """All values starting with the given string."""
-  slug_starts_with: String
-
-  """All values not starting with the given string."""
-  slug_not_starts_with: String
-
-  """All values ending with the given string."""
-  slug_ends_with: String
-
-  """All values not ending with the given string."""
-  slug_not_ends_with: String
   mp3: String
 
   """All values that are not equal to given value."""
@@ -1248,7 +1202,6 @@ input PodcastEpisodeSubscriptionWhereInput {
 }
 
 input PodcastEpisodeUpdateDataInput {
-  slug: String
   mp3: String
   episodeNubmer: Int
   title: String
@@ -1262,7 +1215,6 @@ input PodcastEpisodeUpdateDataInput {
 }
 
 input PodcastEpisodeUpdateInput {
-  slug: String
   mp3: String
   episodeNubmer: Int
   title: String
@@ -1276,7 +1228,6 @@ input PodcastEpisodeUpdateInput {
 }
 
 input PodcastEpisodeUpdateManyDataInput {
-  slug: String
   mp3: String
   episodeNubmer: Int
   title: String
@@ -1299,7 +1250,6 @@ input PodcastEpisodeUpdateManyInput {
 }
 
 input PodcastEpisodeUpdateManyMutationInput {
-  slug: String
   mp3: String
   episodeNubmer: Int
   title: String
@@ -1331,7 +1281,6 @@ input PodcastEpisodeUpdatetagInput {
 }
 
 input PodcastEpisodeUpdateWithoutPodcastStationDataInput {
-  slug: String
   mp3: String
   episodeNubmer: Int
   title: String
@@ -1414,46 +1363,6 @@ input PodcastEpisodeWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  slug: String
-
-  """All values that are not equal to given value."""
-  slug_not: String
-
-  """All values that are contained in given list."""
-  slug_in: [String!]
-
-  """All values that are not contained in given list."""
-  slug_not_in: [String!]
-
-  """All values less than the given value."""
-  slug_lt: String
-
-  """All values less than or equal the given value."""
-  slug_lte: String
-
-  """All values greater than the given value."""
-  slug_gt: String
-
-  """All values greater than or equal the given value."""
-  slug_gte: String
-
-  """All values containing the given string."""
-  slug_contains: String
-
-  """All values not containing the given string."""
-  slug_not_contains: String
-
-  """All values starting with the given string."""
-  slug_starts_with: String
-
-  """All values not starting with the given string."""
-  slug_not_starts_with: String
-
-  """All values ending with the given string."""
-  slug_ends_with: String
-
-  """All values not ending with the given string."""
-  slug_not_ends_with: String
   mp3: String
 
   """All values that are not equal to given value."""
@@ -1686,7 +1595,6 @@ input PodcastEpisodeWhereInput {
 
 input PodcastEpisodeWhereUniqueInput {
   id: ID
-  slug: String
 }
 
 type PodcastStation implements Node {
