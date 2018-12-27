@@ -67,7 +67,7 @@ const Mutations = {
       // TODO
 
       // 3. parse podcast feed
-      let theFeed;
+      let theFeed = null;
       await feedparser(args.rss)
         .then(function(feed) {
           theFeed = feed;
@@ -77,8 +77,8 @@ const Mutations = {
           console.error('There was a problem with the request');
       })
 
-      if (true){
-        const theSlug = Slugify(theFeed.Meta.title);
+      if (theFeed){
+        const theSlug = Slugify(theFeed.title);
         console.log(theSlug);
 
         // 4. add podcast
@@ -93,13 +93,13 @@ const Mutations = {
                 },
                 rss: args.rss,
                 pending: true,
-                title: theFeed.Meta.title,
+                title: theFeed.title,
                 slug: theSlug,
-                description: theFeed.Meta.description,
-                language:theFeed.Meta.language || "fa",
+                description: theFeed.description.long,
+                language:theFeed.language || "fa",
                 episodesId:[],
-                image: theFeed.Meta.image.url,
-                website:theFeed.Meta.website,
+                image: theFeed.image,
+                website:theFeed.link,
                 unProcessedFeed:theFeed
             },
           },
