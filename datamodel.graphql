@@ -50,6 +50,7 @@ type PodcastEpisode {
   category:Category
   tag:[String]
   rating:Float
+  publishDate: DateTime
   ratingsCount:Int
 }
 

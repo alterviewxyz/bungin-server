@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Tue Dec 25 2018 03:40:42 GMT+0330 (Iran Standard Time)
+# timestamp: Fri Dec 28 2018 00:18:00 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -701,6 +701,8 @@ input CopyrightWhereUniqueInput {
   id: ID
 }
 
+scalar DateTime
+
 """Raw JSON value"""
 scalar Json
 
@@ -789,6 +791,7 @@ type PodcastEpisode implements Node {
   category: Category
   tag: [String!]!
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
 }
 
@@ -809,6 +812,7 @@ input PodcastEpisodeCreateInput {
   description: String!
   image: String
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
   tag: PodcastEpisodeCreatetagInput
   podcastStation: PodcastStationCreateOneWithoutEpisodesIdInput
@@ -836,6 +840,7 @@ input PodcastEpisodeCreateWithoutPodcastStationInput {
   description: String!
   image: String
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
   tag: PodcastEpisodeCreatetagInput
   category: CategoryCreateOneInput
@@ -865,6 +870,8 @@ enum PodcastEpisodeOrderByInput {
   image_DESC
   rating_ASC
   rating_DESC
+  publishDate_ASC
+  publishDate_DESC
   ratingsCount_ASC
   ratingsCount_DESC
   updatedAt_ASC
@@ -882,6 +889,7 @@ type PodcastEpisodePreviousValues {
   image: String
   tag: [String!]!
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
 }
 
@@ -1138,6 +1146,28 @@ input PodcastEpisodeScalarWhereInput {
 
   """All values greater than or equal the given value."""
   rating_gte: Float
+  publishDate: DateTime
+
+  """All values that are not equal to given value."""
+  publishDate_not: DateTime
+
+  """All values that are contained in given list."""
+  publishDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  publishDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  publishDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  publishDate_lte: DateTime
+
+  """All values greater than the given value."""
+  publishDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  publishDate_gte: DateTime
   ratingsCount: Int
 
   """All values that are not equal to given value."""
@@ -1208,6 +1238,7 @@ input PodcastEpisodeUpdateDataInput {
   description: String
   image: String
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
   podcastStation: PodcastStationUpdateOneWithoutEpisodesIdInput
@@ -1221,6 +1252,7 @@ input PodcastEpisodeUpdateInput {
   description: String
   image: String
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
   podcastStation: PodcastStationUpdateOneWithoutEpisodesIdInput
@@ -1234,6 +1266,7 @@ input PodcastEpisodeUpdateManyDataInput {
   description: String
   image: String
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
 }
@@ -1256,6 +1289,7 @@ input PodcastEpisodeUpdateManyMutationInput {
   description: String
   image: String
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
 }
@@ -1287,6 +1321,7 @@ input PodcastEpisodeUpdateWithoutPodcastStationDataInput {
   description: String
   image: String
   rating: Float
+  publishDate: DateTime
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
   category: CategoryUpdateOneInput
@@ -1567,6 +1602,28 @@ input PodcastEpisodeWhereInput {
 
   """All values greater than or equal the given value."""
   rating_gte: Float
+  publishDate: DateTime
+
+  """All values that are not equal to given value."""
+  publishDate_not: DateTime
+
+  """All values that are contained in given list."""
+  publishDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  publishDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  publishDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  publishDate_lte: DateTime
+
+  """All values greater than the given value."""
+  publishDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  publishDate_gte: DateTime
   ratingsCount: Int
 
   """All values that are not equal to given value."""
