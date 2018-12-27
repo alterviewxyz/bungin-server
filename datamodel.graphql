@@ -51,6 +51,7 @@ type PodcastEpisode {
   tag:[String]
   rating:Float
   publishDate: DateTime
+  duration: Int
   ratingsCount:Int
 }
 

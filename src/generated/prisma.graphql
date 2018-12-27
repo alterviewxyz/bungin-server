@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Fri Dec 28 2018 00:18:00 GMT+0330 (Iran Standard Time)
+# timestamp: Fri Dec 28 2018 00:31:08 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -792,6 +792,7 @@ type PodcastEpisode implements Node {
   tag: [String!]!
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
 }
 
@@ -813,6 +814,7 @@ input PodcastEpisodeCreateInput {
   image: String
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
   tag: PodcastEpisodeCreatetagInput
   podcastStation: PodcastStationCreateOneWithoutEpisodesIdInput
@@ -841,6 +843,7 @@ input PodcastEpisodeCreateWithoutPodcastStationInput {
   image: String
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
   tag: PodcastEpisodeCreatetagInput
   category: CategoryCreateOneInput
@@ -872,6 +875,8 @@ enum PodcastEpisodeOrderByInput {
   rating_DESC
   publishDate_ASC
   publishDate_DESC
+  duration_ASC
+  duration_DESC
   ratingsCount_ASC
   ratingsCount_DESC
   updatedAt_ASC
@@ -890,6 +895,7 @@ type PodcastEpisodePreviousValues {
   tag: [String!]!
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
 }
 
@@ -1168,6 +1174,28 @@ input PodcastEpisodeScalarWhereInput {
 
   """All values greater than or equal the given value."""
   publishDate_gte: DateTime
+  duration: Int
+
+  """All values that are not equal to given value."""
+  duration_not: Int
+
+  """All values that are contained in given list."""
+  duration_in: [Int!]
+
+  """All values that are not contained in given list."""
+  duration_not_in: [Int!]
+
+  """All values less than the given value."""
+  duration_lt: Int
+
+  """All values less than or equal the given value."""
+  duration_lte: Int
+
+  """All values greater than the given value."""
+  duration_gt: Int
+
+  """All values greater than or equal the given value."""
+  duration_gte: Int
   ratingsCount: Int
 
   """All values that are not equal to given value."""
@@ -1239,6 +1267,7 @@ input PodcastEpisodeUpdateDataInput {
   image: String
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
   podcastStation: PodcastStationUpdateOneWithoutEpisodesIdInput
@@ -1253,6 +1282,7 @@ input PodcastEpisodeUpdateInput {
   image: String
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
   podcastStation: PodcastStationUpdateOneWithoutEpisodesIdInput
@@ -1267,6 +1297,7 @@ input PodcastEpisodeUpdateManyDataInput {
   image: String
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
 }
@@ -1290,6 +1321,7 @@ input PodcastEpisodeUpdateManyMutationInput {
   image: String
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
 }
@@ -1322,6 +1354,7 @@ input PodcastEpisodeUpdateWithoutPodcastStationDataInput {
   image: String
   rating: Float
   publishDate: DateTime
+  duration: Int
   ratingsCount: Int
   tag: PodcastEpisodeUpdatetagInput
   category: CategoryUpdateOneInput
@@ -1624,6 +1657,28 @@ input PodcastEpisodeWhereInput {
 
   """All values greater than or equal the given value."""
   publishDate_gte: DateTime
+  duration: Int
+
+  """All values that are not equal to given value."""
+  duration_not: Int
+
+  """All values that are contained in given list."""
+  duration_in: [Int!]
+
+  """All values that are not contained in given list."""
+  duration_not_in: [Int!]
+
+  """All values less than the given value."""
+  duration_lt: Int
+
+  """All values less than or equal the given value."""
+  duration_lte: Int
+
+  """All values greater than the given value."""
+  duration_gt: Int
+
+  """All values greater than or equal the given value."""
+  duration_gte: Int
   ratingsCount: Int
 
   """All values that are not equal to given value."""
