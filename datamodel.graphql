@@ -28,6 +28,7 @@ type PodcastStation {
   language:String! @default(value: "fa")
   subscribed:Int! @default(value: 0)
   episodesId:[PodcastEpisode]
+  latestEpisode:Int @default(value: 0)
   image: String
   largeImage: String
   category:Category

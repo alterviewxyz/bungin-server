@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Fri Dec 28 2018 00:31:08 GMT+0330 (Iran Standard Time)
+# timestamp: Fri Dec 28 2018 02:13:12 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -1720,6 +1720,7 @@ type PodcastStation implements Node {
   language: String!
   subscribed: Int!
   episodesId(where: PodcastEpisodeWhereInput, orderBy: PodcastEpisodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PodcastEpisode!]
+  latestEpisode: Int
   image: String
   largeImage: String
   category: Category
@@ -1750,6 +1751,7 @@ input PodcastStationCreateInput {
   description: String!
   language: String
   subscribed: Int
+  latestEpisode: Int
   image: String
   largeImage: String
   rating: Float
@@ -1784,6 +1786,7 @@ input PodcastStationCreateWithoutEpisodesIdInput {
   description: String!
   language: String
   subscribed: Int
+  latestEpisode: Int
   image: String
   largeImage: String
   rating: Float
@@ -1823,6 +1826,8 @@ enum PodcastStationOrderByInput {
   language_DESC
   subscribed_ASC
   subscribed_DESC
+  latestEpisode_ASC
+  latestEpisode_DESC
   image_ASC
   image_DESC
   largeImage_ASC
@@ -1847,6 +1852,7 @@ type PodcastStationPreviousValues {
   description: String!
   language: String!
   subscribed: Int!
+  latestEpisode: Int
   image: String
   largeImage: String
   tag: [String!]!
@@ -1903,6 +1909,7 @@ input PodcastStationUpdateInput {
   description: String
   language: String
   subscribed: Int
+  latestEpisode: Int
   image: String
   largeImage: String
   rating: Float
@@ -1924,6 +1931,7 @@ input PodcastStationUpdateManyMutationInput {
   description: String
   language: String
   subscribed: Int
+  latestEpisode: Int
   image: String
   largeImage: String
   rating: Float
@@ -1958,6 +1966,7 @@ input PodcastStationUpdateWithoutEpisodesIdDataInput {
   description: String
   language: String
   subscribed: Int
+  latestEpisode: Int
   image: String
   largeImage: String
   rating: Float
@@ -2249,6 +2258,28 @@ input PodcastStationWhereInput {
 
   """All values greater than or equal the given value."""
   subscribed_gte: Int
+  latestEpisode: Int
+
+  """All values that are not equal to given value."""
+  latestEpisode_not: Int
+
+  """All values that are contained in given list."""
+  latestEpisode_in: [Int!]
+
+  """All values that are not contained in given list."""
+  latestEpisode_not_in: [Int!]
+
+  """All values less than the given value."""
+  latestEpisode_lt: Int
+
+  """All values less than or equal the given value."""
+  latestEpisode_lte: Int
+
+  """All values greater than the given value."""
+  latestEpisode_gt: Int
+
+  """All values greater than or equal the given value."""
+  latestEpisode_gte: Int
   image: String
 
   """All values that are not equal to given value."""
