@@ -149,7 +149,7 @@ const Mutations = {
     // }
     console.log(args);
 
-    const item = await ctx.db.mutation.createPodcastEpisode(
+    const EpisodeItem = await ctx.db.mutation.createPodcastEpisode(
       {
         data: {
           // This is how we create a relationship between the PodcastEpisode and the podcastStation
@@ -164,9 +164,19 @@ const Mutations = {
       info
     );
 
-    console.log(item);
+    const podcastItem = await ctx.db.mutation.updatePodcastStation(
+      {
+        data: {
+          latestEpisode: args.data.episodeNubmer
+        },
+        where: {
+          id: args.podcastStation,
+        },
+      },
+      info
+    );
 
-    return item;
+    return EpisodeItem;
   },
   updatePodcastEpisode(parent, args, ctx, info) {
     // first take a copy of the updates
