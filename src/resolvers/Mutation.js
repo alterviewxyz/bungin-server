@@ -152,12 +152,12 @@ const Mutations = {
     const item = await ctx.db.mutation.createPodcastEpisode(
       {
         data: {
-          // This is how we create a relationship between the PodcastEpisode and the User
-          // user: {
-          //   connect: {
-          //     id: ctx.request.userId,
-          //   },
-          // },
+          // This is how we create a relationship between the PodcastEpisode and the podcastStation
+          podcastStation: {
+            connect: {
+              id: args.podcastStation,
+            },
+          },
           ...args.data,
         },
       },
