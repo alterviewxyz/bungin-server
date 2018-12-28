@@ -1,15 +1,38 @@
-# Bungin GraphQL API
-Bungin Server is a GraphQL API for Bungin platform that helps you discover Persian Podcasts and subscribe to them.
+<h1 align="center">
+  Bungin GraphQL API
+</h1>
+<p align="center">
+  <strong>
+    🎙 Bungin Server Is A GraphQL API For Bungin; A Social Media For Podcasts. 🎙
+  </strong>
+<p align="center">
+  For React client side see: <a href="https://github.com/alterviewxyz/bungin-react">Bungin React</a>
+</p>
+<p align="center">
+  <a href="https://alterview.xyz">
+    Alterview.xyz
+  </a>
+</p>
 
-*For React client side see: [Bungin-React](https://github.com/alterviewxyz/bungin-react)*
+<p align="center">
+  <a href="https://github.com/alterviewxyz/bungin-server">
+    <img src="https://img.shields.io/github/last-commit/alterviewxyz/bungin-server.svg" alt="Latest Commits" />
+  </a>
+  <a href="https://travis-ci.com/alterviewxyz/bungin-server">
+    <img src="https://api.travis-ci.com/alterviewxyz/bungin-server.svg?branch=master" alt="Current build status." />
+  </a>
+  <a href="https://github.com/alterviewxyz/bungin-server/#contributing">
+    <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" alt="Contributions" />
+  </a>
+  <a href="https://github.com/alterviewxyz/bungin-server/blob/develop/LICENSE">
+    <img src="https://img.shields.io/github/license/alterviewxyz/bungin-server.svg" alt="License" />
+  </a>
+  <a href="https://twitter.com/alterviewxyz">
+    <img src="https://img.shields.io/twitter/follow/alterviewxyz.svg?label=Follow&style=social?style=plastic" alt="Twitter" />
+  </a>
+</p>
 
-[https://alterview.xyz](https://alterview.xyz)
 
-![Latest Commits](https://img.shields.io/github/last-commit/alterviewxyz/bungin-server.svg)
-[![Build Status](https://api.travis-ci.com/alterviewxyz/bungin-server.svg?branch=master)](https://travis-ci.com/alterviewxyz/bungin-server)
-[![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/alterviewxyz/bungin-server/#contributing)
-[![GitHub license](https://img.shields.io/github/license/alterviewxyz/bungin-server.svg)](https://github.com/alterviewxyz/bungin-server/blob/develop/LICENSE)
-[![Twitter](https://img.shields.io/twitter/follow/alterviewxyz.svg?label=Follow&style=social?style=plastic)](https://twitter.com/alterviewxyz)
 
 ## Table of Contents
 * [Key Features](#key-features)
