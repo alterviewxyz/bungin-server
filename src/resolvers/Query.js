@@ -10,7 +10,8 @@ const Query = {
     return ctx.db.query.user(
       {
         where: { id: ctx.request.userId },
-      }, info,
+      },
+      info,
     );
   },
   async users(parent, args, ctx, info) {

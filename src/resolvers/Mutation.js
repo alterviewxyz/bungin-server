@@ -16,17 +16,17 @@ const Mutations = {
         data: {
           ...args,
           password,
-          permissions: { set: ['USER'] },
-        },
+          permissions: { set: ['USER'] }
+        }
       },
-      info,
+      info
     );
     // 4. create the JWT token for them
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     // 5. We set the jwt as a cookie on the response
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year cookie
     });
     // 6. Finally we return the user to the browser
     return user;
@@ -47,7 +47,7 @@ const Mutations = {
     // 4. Set the cookie with the token
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365,
+      maxAge: 1000 * 60 * 60 * 24 * 365
     });
     // 5. Return the user
     return user;
@@ -69,10 +69,10 @@ const Mutations = {
     // 3. parse podcast feed
     let theFeed = null;
     await feedparser(args.rss)
-      .then((feed) => {
+      .then(feed => {
         theFeed = feed;
       })
-      .catch((e) => {
+      .catch(e => {
         theFeed = null;
         console.error('There was a problem with the request');
       });
@@ -88,8 +88,8 @@ const Mutations = {
             // 4. create a relationship between the PodcastStation and the User
             author: {
               connect: {
-                id: ctx.request.userId,
-              },
+                id: ctx.request.userId
+              }
             },
             rss: args.rss,
             pending: true,
@@ -100,10 +100,10 @@ const Mutations = {
             episodesId: [],
             image: theFeed.image,
             website: theFeed.link,
-            unProcessedFeed: theFeed,
-          },
+            unProcessedFeed: theFeed
+          }
         },
-        info,
+        info
       );
       console.log(podcastStation);
       return podcastStation;
@@ -119,10 +119,10 @@ const Mutations = {
       {
         data: updates.data,
         where: {
-          id: args.id,
-        },
+          id: args.id
+        }
       },
-      info,
+      info
     );
   },
   async deletePodcastStation(parent, args, ctx, info) {
@@ -155,25 +155,25 @@ const Mutations = {
           // This is how we create a relationship between the PodcastEpisode and the podcastStation
           podcastStation: {
             connect: {
-              id: args.podcastStation,
-            },
+              id: args.podcastStation
+            }
           },
-          ...args.data,
-        },
+          ...args.data
+        }
       },
-      info,
+      info
     );
 
     const podcastItem = await ctx.db.mutation.updatePodcastStation(
       {
         data: {
-          latestEpisode: args.data.episodeNubmer,
+          latestEpisode: args.data.episodeNubmer
         },
         where: {
-          id: args.podcastStation,
-        },
+          id: args.podcastStation
+        }
       },
-      info,
+      info
     );
 
     return EpisodeItem;
@@ -188,10 +188,10 @@ const Mutations = {
       {
         data: updates.data,
         where: {
-          id: args.id,
-        },
+          id: args.id
+        }
       },
-      info,
+      info
     );
   },
   async deletePodcastEpisode(parent, args, ctx, info) {
@@ -209,8 +209,7 @@ const Mutations = {
     // }
     // 3. Delete it!
     return ctx.db.mutation.deletePodcastEpisode({ where }, info);
-  },
-
+  }
 };
 
 module.exports = Mutations;
