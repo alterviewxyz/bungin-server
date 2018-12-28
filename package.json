@@ -7,7 +7,8 @@
     "dev": "nodemon -e js,graphql -x node --inspect src/index.js",
     "deploy": "prisma deploy --env-file variables.env",
     "test": "jest src",
-    "coverage": "jest --collectCoverageFrom=src/**.js --coverage src",
+    "test:coverage": "jest --collectCoverageFrom=src/**.js --coverage src",
+    "test:badges": "npm run test:coverage  && jest-coverage-badges",
     "lint": "eslint src"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "graphql-cli": "^2.16.7",
     "graphql-yoga": "1.16.2",
     "jest": "^23.6.0",
+    "jest-coverage-badges": "^1.1.2",
     "jsonwebtoken": "8.3.0",
     "node-podcast-parser": "^2.3.0",
     "nodemailer": "^4.6.8",
@@ -45,9 +47,16 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "3.3.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-prettier": "3.0.0",
     "eslint-plugin-jest": "^22.1.2",
     "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "3.0.0",
     "prettier": "1.15.3"
+  },
+  "jest": {
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ]
   }
 }
