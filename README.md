@@ -1,16 +1,16 @@
 <h1 align="center">
-  Bungin GraphQL API
+  Bungin GraphQL API 📻
 </h1>
 <p align="center">
   <strong>
-    🎙 Bungin Server Is A GraphQL API For Bungin; A Social Media For Podcasts. 🎙
+    Bungin Server Is A GraphQL API For Bungin; A Social Media For Podcasts. 
   </strong>
 <p align="center">
   For React client side see: <a href="https://github.com/alterviewxyz/bungin-react">Bungin React</a>
 </p>
 <p align="center">
   <a href="https://alterview.xyz">
-    Alterview.xyz
+    🎙Alterview.xyz🎙
   </a>
 </p>
 
