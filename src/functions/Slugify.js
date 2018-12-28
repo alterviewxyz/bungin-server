@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 function slugify(text) {
   return text
     .toString()

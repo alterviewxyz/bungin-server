@@ -2,6 +2,7 @@ require('dotenv').config({ path: 'variables.env' });
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const createServer = require('./createServer');
+// eslint-disable-next-line no-unused-vars
 const db = require('./db');
 
 const server = createServer();

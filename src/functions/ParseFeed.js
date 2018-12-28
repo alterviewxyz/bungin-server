@@ -12,7 +12,6 @@ const ParseFeed = feedURL =>
         if (err) {
           return rejected(new Error('Parsing error'));
         }
-        console.log(data);
         return fulfilled(data);
       });
     });
