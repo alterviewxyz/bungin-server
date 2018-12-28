@@ -1,7 +1,16 @@
 {
-  "extends": ["airbnb-base", "prettier", "eslint:recommended"],
-  "plugins": ["prettier"],
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "eslint:recommended",
+    "plugin:jest/recommended"
+  ],
+  "plugins": ["prettier", "jest"],
   "rules": {
     "no-console": 0
+  },
+  "env": {
+    "node": true,
+    "jest/globals": true
   }
 }
