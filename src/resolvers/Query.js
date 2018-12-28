@@ -9,9 +9,9 @@ const Query = {
     }
     return ctx.db.query.user(
       {
-        where: { id: ctx.request.userId },
+        where: { id: ctx.request.userId }
       },
-      info,
+      info
     );
   },
   async users(parent, args, ctx, info) {
@@ -29,7 +29,7 @@ const Query = {
   podcastStations: forwardTo('db'),
   podcastStation: forwardTo('db'),
   podcastEpisodes: forwardTo('db'),
-  podcastEpisode: forwardTo('db'),
+  podcastEpisode: forwardTo('db')
 };
 
 module.exports = Query;
