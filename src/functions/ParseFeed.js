@@ -1,22 +1,20 @@
-//migrated to "node-podcast-parser"
+// migrated to "node-podcast-parser"
 const request = require('request');
 const parsePodcast = require('node-podcast-parser');
 
-const ParseFeed = (feedURL) => {
-    return new Promise(function (fulfilled, rejected) {
-        request(feedURL, async (err, res, data) => {
-            if (err) {
-                return rejected( new Error("Network error") );
-            }
-            await parsePodcast(data, (err, data) => {
-                if (err) {
-                    return rejected( new Error("Parsing error") );
-                }
-                console.log(data);
-                return fulfilled( data );
-            });
-        });
+const ParseFeed = feedURL => new Promise(((fulfilled, rejected) => {
+  request(feedURL, async (err, res, data) => {
+    if (err) {
+      return rejected(new Error('Network error'));
+    }
+    await parsePodcast(data, (err, data) => {
+      if (err) {
+        return rejected(new Error('Parsing error'));
+      }
+      console.log(data);
+      return fulfilled(data);
     });
-}
+  });
+}));
 
 module.exports = ParseFeed;

@@ -19,7 +19,7 @@ const Mutations = {
           permissions: { set: ['USER'] },
         },
       },
-      info
+      info,
     );
     // 4. create the JWT token for them
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
@@ -56,58 +56,58 @@ const Mutations = {
     ctx.response.clearCookie('token');
     return { message: 'Goodbye!' };
   },
-  
+
   async addPodcastFromURL(parent, args, ctx, info) {
-      // 1. verify if user is Logged In
-      if(!ctx.request.userId){
-        throw new Error("You must be logged to do that!");
-      }
+    // 1. verify if user is Logged In
+    if (!ctx.request.userId) {
+      throw new Error('You must be logged to do that!');
+    }
 
-      // 2. verify if user has "PODCASTADD" permission
-      // TODO
+    // 2. verify if user has "PODCASTADD" permission
+    // TODO
 
-      // 3. parse podcast feed
-      let theFeed = null;
-      await feedparser(args.rss)
-        .then(function(feed) {
-          theFeed = feed;
-        })
-        .catch(function(e) {
-          theFeed = null;
-          console.error('There was a problem with the request');
+    // 3. parse podcast feed
+    let theFeed = null;
+    await feedparser(args.rss)
+      .then((feed) => {
+        theFeed = feed;
       })
+      .catch((e) => {
+        theFeed = null;
+        console.error('There was a problem with the request');
+      });
 
-      if (theFeed){
-        const theSlug = Slugify(theFeed.title);
-        console.log(theSlug);
+    if (theFeed) {
+      const theSlug = Slugify(theFeed.title);
+      console.log(theSlug);
 
-        // 4. add podcast
-        const podcastStation = await db.mutation.createPodcastStation(
-          {
-            data: {
-                // 4. create a relationship between the PodcastStation and the User
-                author: {
-                    connect: {
-                        id: ctx.request.userId,
-                    },
-                },
-                rss: args.rss,
-                pending: true,
-                title: theFeed.title,
-                slug: theSlug,
-                description: theFeed.description.long,
-                language:theFeed.language || "fa",
-                episodesId:[],
-                image: theFeed.image,
-                website:theFeed.link,
-                unProcessedFeed:theFeed
+      // 4. add podcast
+      const podcastStation = await db.mutation.createPodcastStation(
+        {
+          data: {
+            // 4. create a relationship between the PodcastStation and the User
+            author: {
+              connect: {
+                id: ctx.request.userId,
+              },
             },
+            rss: args.rss,
+            pending: true,
+            title: theFeed.title,
+            slug: theSlug,
+            description: theFeed.description.long,
+            language: theFeed.language || 'fa',
+            episodesId: [],
+            image: theFeed.image,
+            website: theFeed.link,
+            unProcessedFeed: theFeed,
           },
-          info
-        );
-        console.log(podcastStation);
-        return podcastStation;
-      }
+        },
+        info,
+      );
+      console.log(podcastStation);
+      return podcastStation;
+    }
   },
   updatePodcastStation(parent, args, ctx, info) {
     // first take a copy of the updates
@@ -122,7 +122,7 @@ const Mutations = {
           id: args.id,
         },
       },
-      info
+      info,
     );
   },
   async deletePodcastStation(parent, args, ctx, info) {
@@ -161,19 +161,19 @@ const Mutations = {
           ...args.data,
         },
       },
-      info
+      info,
     );
 
     const podcastItem = await ctx.db.mutation.updatePodcastStation(
       {
         data: {
-          latestEpisode: args.data.episodeNubmer
+          latestEpisode: args.data.episodeNubmer,
         },
         where: {
           id: args.podcastStation,
         },
       },
-      info
+      info,
     );
 
     return EpisodeItem;
@@ -191,7 +191,7 @@ const Mutations = {
           id: args.id,
         },
       },
-      info
+      info,
     );
   },
   async deletePodcastEpisode(parent, args, ctx, info) {
