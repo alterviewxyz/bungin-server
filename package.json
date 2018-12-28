@@ -15,9 +15,6 @@
     "bcryptjs": "2.4.3",
     "cookie-parser": "^1.4.3",
     "dotenv": "6.0.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-jest": "^22.1.2",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
     "feedparser": "^2.2.9",
     "graphql": "^0.13.2",
     "graphql-cli": "^2.16.7",
@@ -49,6 +46,8 @@
     "eslint-config-prettier": "3.3.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "3.0.0",
+    "eslint-plugin-jest": "^22.1.2",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
     "prettier": "1.15.3"
   }
 }
