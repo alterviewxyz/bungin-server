@@ -1,9 +1,27 @@
 enum Permission {
-  ADMIN
   USER
-  PODCASTCREATE
-  PODCASTOWNER
-  PODCASTCONTRIBUTOR
+  CAN_VOTE
+  CAN_CONTRIBUTE
+  CAN_ADD_Podcast
+  OWN_PODCAST
+  ADMIN
+}
+
+enum VoteType {
+  UPVOTE
+  DWVOTE
+}
+
+enum VoteObject {
+  STATION
+  EPISODE
+}
+
+enum PodcastTextType {
+  TEXT
+  PARAGRAPH_TIMING
+  SENTENCE_TIMING
+  WORD_TIMING
 }
 
 type User {
@@ -13,57 +31,97 @@ type User {
   password: String!
   resetToken: String
   resetTokenExpiry: String
-  permissions: [Permission]
-  nowPlaying: [PodcastEpisode]
+  subscribes(skip: Int = 0, limit: Int = 100): [PodcastStation]!
+    @relation(name: "SubscriberRelation")
+  owns: [PodcastStation]! @relation(name: "OwnerRelation")
+  votes: [VoteReview]!
+  permissions: [Permission]!
+  followerCount: Int @default(value: 0)
+  folloingCount: Int @default(value: 0)
+  followers: [FollowRelation]! @relation(name: "UserRelation")
+  following: [FollowRelation]! @relation(name: "FollowerRelation")
+  nowPlaying: [PodcastEpisode]!
+}
+
+type FollowRelation {
+  user: User! @relation(name: "UserRelation")
+  follower: User! @relation(name: "FollowerRelation")
+}
+
+type VoteReview {
+  user: User!
+  podcastStation: PodcastStation
+  episode: PodcastEpisode
+  voteObject: VoteObject!
+  voteType: VoteType!
+  text: String
 }
 
 type PodcastStation {
   id: ID! @unique
   slug: String! @unique
   rss: String!
-  pending:Boolean! @default(value: true)
-  unProcessedFeed:Json
+  pending: Boolean! @default(value: true)
   title: String!
+  subtitle: String!
   description: String!
-  language:String! @default(value: "fa")
-  subscribed:Int! @default(value: 0)
-  episodesId:[PodcastEpisode]
-  latestEpisode:Int @default(value: 0)
+  website: String
+  links: [String]!
+  language: String! @default(value: "fa")
+  subscribers: User! @relation(name: "SubscriberRelation")
+  subscribedCount: Int! @default(value: 0)
   image: String
   largeImage: String
-  category:Category
-  tag:[String]
-  copyright:Copyright
-  rating:Float
-  ratings:[Float]
-  website:String
-  author:User
+  category: Category
+  tag: [Tag]!
+  copyright: Copyright
+  author: User! @relation(name: "OwnerRelation")
+  #must remove "Id" from item below ASAP
+  episodesId: [PodcastEpisode!]!
+  latestEpisode: Int! @default(value: 0)
+  upvotes: Int! @default(value: 0)
+  downvotes: Int! @default(value: 0)
+  reviews: [VoteReview]!
+  unProcessedFeed: Json
 }
 
 type PodcastEpisode {
   id: ID! @unique
   mp3: String!
-  podcastStation:PodcastStation
-  episodeNubmer:Int!
+  podcastStation: PodcastStation!
+  episodeNubmer: Int!
   title: String!
+  subtitle: String!
   description: String!
-  image: String
-  category:Category
-  tag:[String]
-  rating:Float
-  publishDate: DateTime
-  duration: Int
-  ratingsCount:Int
-}
 
+  text: String
+  textType: PodcastTextType
+
+  image: String
+  category: Category
+  tag: [Tag]!
+  publishDate: DateTime!
+  duration: Int!
+
+  upvotes: Int! @default(value: 0)
+  downvotes: Int! @default(value: 0)
+  reviews: [VoteReview]!
+}
 
 type Category {
   id: ID! @unique
   title: String!
   description: String
   image: String
-  motherCategory:Category
-  count:Int
+  motherCategory: Category
+  count: Int
+}
+
+type Tag {
+  id: ID! @unique
+  title: String!
+  category: Category
+  count: Int
 }
 
 type Copyright {
@@ -71,5 +129,5 @@ type Copyright {
   title: String!
   description: String
   image: String
-  count:Int
+  count: Int
 }
