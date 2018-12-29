@@ -95,6 +95,7 @@ const Mutations = {
             rss: args.rss,
             pending: true,
             title: theFeed.title,
+            subtitle: '',
             slug: theSlug,
             description: theFeed.description.long,
             language: theFeed.language || 'fa',

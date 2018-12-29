@@ -68,7 +68,7 @@ type PodcastStation {
   website: String
   links: [String]!
   language: String! @default(value: "fa")
-  subscribers: User! @relation(name: "SubscriberRelation")
+  subscribers: User @relation(name: "SubscriberRelation")
   subscribedCount: Int! @default(value: 0)
   image: String
   largeImage: String

@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Sat Dec 29 2018 15:01:03 GMT+0330 (Iran Standard Time)
+# timestamp: Sat Dec 29 2018 15:11:07 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -2094,7 +2094,7 @@ type PodcastStation implements Node {
   website: String
   links: [String!]!
   language: String!
-  subscribers: User!
+  subscribers: User
   subscribedCount: Int!
   image: String
   largeImage: String
@@ -2137,7 +2137,7 @@ input PodcastStationCreateInput {
   downvotes: Int
   unProcessedFeed: Json
   links: PodcastStationCreatelinksInput
-  subscribers: UserCreateOneWithoutSubscribesInput!
+  subscribers: UserCreateOneWithoutSubscribesInput
   category: CategoryCreateOneInput
   tag: TagCreateManyInput
   copyright: CopyrightCreateOneInput
@@ -2187,7 +2187,7 @@ input PodcastStationCreateWithoutAuthorInput {
   downvotes: Int
   unProcessedFeed: Json
   links: PodcastStationCreatelinksInput
-  subscribers: UserCreateOneWithoutSubscribesInput!
+  subscribers: UserCreateOneWithoutSubscribesInput
   category: CategoryCreateOneInput
   tag: TagCreateManyInput
   copyright: CopyrightCreateOneInput
@@ -2212,7 +2212,7 @@ input PodcastStationCreateWithoutEpisodesIdInput {
   downvotes: Int
   unProcessedFeed: Json
   links: PodcastStationCreatelinksInput
-  subscribers: UserCreateOneWithoutSubscribesInput!
+  subscribers: UserCreateOneWithoutSubscribesInput
   category: CategoryCreateOneInput
   tag: TagCreateManyInput
   copyright: CopyrightCreateOneInput
@@ -2237,7 +2237,7 @@ input PodcastStationCreateWithoutReviewsInput {
   downvotes: Int
   unProcessedFeed: Json
   links: PodcastStationCreatelinksInput
-  subscribers: UserCreateOneWithoutSubscribesInput!
+  subscribers: UserCreateOneWithoutSubscribesInput
   category: CategoryCreateOneInput
   tag: TagCreateManyInput
   copyright: CopyrightCreateOneInput
@@ -2897,7 +2897,7 @@ input PodcastStationUpdateInput {
   downvotes: Int
   unProcessedFeed: Json
   links: PodcastStationUpdatelinksInput
-  subscribers: UserUpdateOneRequiredWithoutSubscribesInput
+  subscribers: UserUpdateOneWithoutSubscribesInput
   category: CategoryUpdateOneInput
   tag: TagUpdateManyInput
   copyright: CopyrightUpdateOneInput
@@ -2999,7 +2999,7 @@ input PodcastStationUpdateWithoutAuthorDataInput {
   downvotes: Int
   unProcessedFeed: Json
   links: PodcastStationUpdatelinksInput
-  subscribers: UserUpdateOneRequiredWithoutSubscribesInput
+  subscribers: UserUpdateOneWithoutSubscribesInput
   category: CategoryUpdateOneInput
   tag: TagUpdateManyInput
   copyright: CopyrightUpdateOneInput
@@ -3024,7 +3024,7 @@ input PodcastStationUpdateWithoutEpisodesIdDataInput {
   downvotes: Int
   unProcessedFeed: Json
   links: PodcastStationUpdatelinksInput
-  subscribers: UserUpdateOneRequiredWithoutSubscribesInput
+  subscribers: UserUpdateOneWithoutSubscribesInput
   category: CategoryUpdateOneInput
   tag: TagUpdateManyInput
   copyright: CopyrightUpdateOneInput
@@ -4301,9 +4301,11 @@ input UserUpdateOneRequiredWithoutOwnsInput {
   upsert: UserUpsertWithoutOwnsInput
 }
 
-input UserUpdateOneRequiredWithoutSubscribesInput {
+input UserUpdateOneWithoutSubscribesInput {
   create: UserCreateWithoutSubscribesInput
   connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: UserUpdateWithoutSubscribesDataInput
   upsert: UserUpsertWithoutSubscribesInput
 }
