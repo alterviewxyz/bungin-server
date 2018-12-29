@@ -15,12 +15,13 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/alterviewxyz/bungin-server">
+  <a href="https://github.com/alterviewxyz/bungin-server/commits/master">
     <img src="https://img.shields.io/github/last-commit/alterviewxyz/bungin-server.svg" alt="Latest Commits" />
   </a>
   <a href="https://travis-ci.com/alterviewxyz/bungin-server">
     <img src="https://api.travis-ci.com/alterviewxyz/bungin-server.svg?branch=master" alt="Current build status." />
   </a>
+    <img src="https://cdn.jsdelivr.net/gh/alterviewxyz/bungin-server@master/coverage/badge-lines.svg" alt="Current test covarage status." />
   <a href="https://github.com/alterviewxyz/bungin-server/#contributing">
     <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" alt="Contributions" />
   </a>
