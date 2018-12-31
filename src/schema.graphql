@@ -1,4 +1,21 @@
 # import * from './generated/prisma.graphql'
+input PodcastEpisodeCreateInputOveride {
+  mp3: String!
+  episodeNubmer: Int!
+  title: String!
+  subtitle: String
+  description: String!
+  text: String
+  textType: PodcastTextType
+  image: String
+  publishDate: DateTime!
+  duration: Int!
+  upvotes: Int
+  downvotes: Int
+  category: CategoryCreateOneInput
+  tag: TagCreateManyInput
+  reviews: VoteReviewCreateManyWithoutEpisodeInput
+}
 
 type SuccessMessage {
   message: String
@@ -12,26 +29,45 @@ type Mutation {
   # resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
 
   addPodcastFromURL(rss: String!): PodcastStation!
-  updatePodcastStation(id: ID!,data:PodcastStationUpdateInput): PodcastStation!
+  updatePodcastStation(
+    id: ID!
+    data: PodcastStationUpdateInput
+  ): PodcastStation!
   deletePodcastStation(id: ID!): PodcastStation
 
-  createPodcastEpisode(data:PodcastEpisodeCreateInput!, podcastStation: String!): PodcastEpisode!
-  updatePodcastEpisode(id: ID!,data:PodcastEpisodeUpdateInput): PodcastEpisode!
+  createPodcastEpisode(
+    data: PodcastEpisodeCreateInputOveride!
+    podcastStation: String!
+  ): PodcastEpisode!
+  updatePodcastEpisode(
+    id: ID!
+    data: PodcastEpisodeUpdateInput
+  ): PodcastEpisode!
   deletePodcastEpisode(id: ID!): PodcastEpisode
 
   # updatePermissions(permissions: [Permission], userId: ID!): User
 }
 
 type Query {
-  podcastStations(where: PodcastStationWhereInput, orderBy: PodcastStationOrderByInput, skip: Int, first: Int): [PodcastStation]!
+  podcastStations(
+    where: PodcastStationWhereInput
+    orderBy: PodcastStationOrderByInput
+    skip: Int
+    first: Int
+  ): [PodcastStation]!
   podcastStation(where: PodcastStationWhereUniqueInput!): PodcastStation
-  podcastEpisodes(where: PodcastEpisodeWhereInput, orderBy: PodcastEpisodeOrderByInput, skip: Int, first: Int): [PodcastEpisode]!
+  podcastEpisodes(
+    where: PodcastEpisodeWhereInput
+    orderBy: PodcastEpisodeOrderByInput
+    skip: Int
+    first: Int
+  ): [PodcastEpisode]!
   podcastEpisode(where: PodcastEpisodeWhereUniqueInput!): PodcastEpisode
   me: User
   users: [User]!
 }
 
-type User{
+type User {
   id: ID!
   name: String!
   email: String!

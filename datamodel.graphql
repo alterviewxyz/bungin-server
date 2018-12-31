@@ -91,7 +91,7 @@ type PodcastEpisode {
   podcastStation: PodcastStation!
   episodeNubmer: Int!
   title: String!
-  subtitle: String!
+  subtitle: String
   description: String!
 
   text: String

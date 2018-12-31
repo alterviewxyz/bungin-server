@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/alterview/bungin-server/dev
-# timestamp: Sat Dec 29 2018 15:11:07 GMT+0330 (Iran Standard Time)
+# timestamp: Tue Jan 01 2019 02:18:58 GMT+0330 (Iran Standard Time)
 
 type AggregateCategory {
   count: Int!
@@ -923,7 +923,7 @@ type PodcastEpisode implements Node {
   podcastStation: PodcastStation!
   episodeNubmer: Int!
   title: String!
-  subtitle: String!
+  subtitle: String
   description: String!
   text: String
   textType: PodcastTextType
@@ -951,7 +951,7 @@ input PodcastEpisodeCreateInput {
   mp3: String!
   episodeNubmer: Int!
   title: String!
-  subtitle: String!
+  subtitle: String
   description: String!
   text: String
   textType: PodcastTextType
@@ -985,7 +985,7 @@ input PodcastEpisodeCreateWithoutPodcastStationInput {
   mp3: String!
   episodeNubmer: Int!
   title: String!
-  subtitle: String!
+  subtitle: String
   description: String!
   text: String
   textType: PodcastTextType
@@ -1003,7 +1003,7 @@ input PodcastEpisodeCreateWithoutReviewsInput {
   mp3: String!
   episodeNubmer: Int!
   title: String!
-  subtitle: String!
+  subtitle: String
   description: String!
   text: String
   textType: PodcastTextType
@@ -1064,7 +1064,7 @@ type PodcastEpisodePreviousValues {
   mp3: String!
   episodeNubmer: Int!
   title: String!
-  subtitle: String!
+  subtitle: String
   description: String!
   text: String
   textType: PodcastTextType
