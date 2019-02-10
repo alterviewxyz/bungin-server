@@ -31,6 +31,7 @@ type User {
   password: String!
   resetToken: String
   resetTokenExpiry: String
+  username: String! @unique
   subscribes(skip: Int = 0, limit: Int = 100): [PodcastStation]!
     @relation(name: "SubscriberRelation")
   owns: [PodcastStation]! @relation(name: "OwnerRelation")
@@ -38,17 +39,17 @@ type User {
   permissions: [Permission]!
   followerCount: Int @default(value: 0)
   folloingCount: Int @default(value: 0)
-  followers: [FollowRelation]! @relation(name: "UserRelation")
-  following: [FollowRelation]! @relation(name: "FollowerRelation")
+  following: [User]
   nowPlaying: [PodcastEpisode]!
 }
 
-type FollowRelation {
-  user: User! @relation(name: "UserRelation")
-  follower: User! @relation(name: "FollowerRelation")
-}
+# type FollowRelation {
+#   user: User!
+#   follower: User! @relation(name: "FollowerRelation")
+# }
 
 type VoteReview {
+  id: ID! @unique
   user: User!
   podcastStation: PodcastStation
   episode: PodcastEpisode

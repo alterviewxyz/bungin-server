@@ -14,6 +14,10 @@ const Query = {
       info
     );
   },
+  user(parent, args, ctx, info) {
+    // check if there is a current user ID
+    return ctx.db.query.user({ where: { username: args.username } }, info);
+  },
   async users(parent, args, ctx, info) {
     // 1. Check if they are logged in
     if (!ctx.request.userId) {

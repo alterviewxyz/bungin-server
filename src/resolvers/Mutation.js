@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const db = require('../db');
 const feedparser = require('../functions/ParseFeed');
 const Slugify = require('../functions/Slugify');
+const genRanId = require('../functions/GenrateRandomID');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {
@@ -17,7 +18,8 @@ const Mutations = {
         data: {
           ...args,
           password,
-          permissions: { set: ['USER'] }
+          permissions: { set: ['USER'] },
+          username: genRanId(9)
         }
       },
       info

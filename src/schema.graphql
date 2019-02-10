@@ -45,6 +45,8 @@ type Mutation {
   ): PodcastEpisode!
   deletePodcastEpisode(id: ID!): PodcastEpisode
 
+  subscribePodcast(userId: ID!, stationId: ID!): SuccessMessage!
+  unsubscribePodcast(userId: ID!, stationId: ID!): SuccessMessage!
   # updatePermissions(permissions: [Permission], userId: ID!): User
 }
 
@@ -64,12 +66,7 @@ type Query {
   ): [PodcastEpisode]!
   podcastEpisode(where: PodcastEpisodeWhereUniqueInput!): PodcastEpisode
   me: User
-  users: [User]!
-}
-
-type User {
-  id: ID!
-  name: String!
-  email: String!
-  permissions: [Permission!]!
+  userSubscribes: [PodcastStation]
+  user(username: String, id: ID): User
+  users(where: UserWhereInput, skip: Int): [User]!
 }
