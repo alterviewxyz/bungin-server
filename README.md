@@ -51,7 +51,7 @@ TODO
 * GraphQL Yoga (Fully-featured GraphQL srver)
 
 ## Setup
-TODO
+TODO test
 
 ## Contributing
 Pull requests are welcome. You'll probably find lots of improvements to be made.
